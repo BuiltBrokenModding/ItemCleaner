@@ -1,10 +1,17 @@
 package com.builtbroken.itemclear;
 
+import com.builtbroken.itemclear.server.CommandItemClear;
 import com.builtbroken.mc.lib.mod.AbstractMod;
 import com.builtbroken.mc.lib.mod.AbstractProxy;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
 
 /**
  * Created by Dark on 7/4/2015.
@@ -37,9 +44,21 @@ public class ItemClear extends AbstractMod
     }
 
     @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        super.preInit(event);
+    }
+
+    @Mod.EventHandler
     public void init(FMLInitializationEvent event)
     {
         super.init(event);
+    }
+
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event)
+    {
+        super.postInit(event);
     }
 
     @Override
@@ -47,4 +66,14 @@ public class ItemClear extends AbstractMod
     {
         return proxy;
     }
+
+    @Mod.EventHandler
+    public void serverStarting(FMLServerStartingEvent event)
+    {
+        // Setup command
+        ICommandManager commandManager = FMLCommonHandler.instance().getMinecraftServerInstance().getCommandManager();
+        ServerCommandManager serverCommandManager = ((ServerCommandManager) commandManager);
+        serverCommandManager.registerCommand(new CommandItemClear());
+    }
+
 }
