@@ -1,6 +1,7 @@
 package com.builtbroken.itemclear.server;
 
 import com.builtbroken.mc.prefab.commands.AbstractCommand;
+import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,7 +30,34 @@ public class CommandItemClear extends AbstractCommand
     public boolean handleConsoleCommand(ICommandSender sender, String[] args)
     {
         boolean two = args.length > 1;
-        if (args[0].equalsIgnoreCase("addBlock"))
+        if (args[0].equalsIgnoreCase("enable"))
+        {
+            if(TickHandler.enabled)
+            {
+                sender.addChatMessage(new ChatComponentText("Item Clearer is already enabled"));
+            }
+            else
+            {
+                TickHandler.enabled = true;
+                FMLCommonHandler.instance().bus().register(TickHandler.instance);
+                sender.addChatMessage(new ChatComponentText("Item Clearer is now " + (TickHandler.enabled ? "enabled" : "disabled")));
+            }
+            return true;
+        }
+        else if (args[0].equalsIgnoreCase("disable"))
+        {
+            if(!TickHandler.enabled)
+            {
+                sender.addChatMessage(new ChatComponentText("Item Clearer is already disabled"));
+            }
+            else
+            {
+                TickHandler.enabled = false;
+                sender.addChatMessage(new ChatComponentText("Item Clearer is now " + (TickHandler.enabled ? "enabled" : "disabled")));
+            }
+            return true;
+        }
+        else if (args[0].equalsIgnoreCase("addBlock"))
         {
             if (two)
             {

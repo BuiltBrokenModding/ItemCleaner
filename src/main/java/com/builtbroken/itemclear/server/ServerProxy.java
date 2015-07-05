@@ -18,6 +18,6 @@ public class ServerProxy extends CommonProxy
     public void init()
     {
         super.init();
-        FMLCommonHandler.instance().bus().register(new TickHandler());
+        FMLCommonHandler.instance().bus().register(TickHandler.instance);
     }
 }
