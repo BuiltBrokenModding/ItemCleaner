@@ -16,7 +16,7 @@ import net.minecraft.command.ServerCommandManager;
 /**
  * Created by Dark on 7/4/2015.
  */
-@Mod(modid = ItemClear.DOMAIN, name = ItemClear.NAME, version = ItemClear.VERSION, dependencies = ItemClear.DEPENDENCIES)
+@Mod(modid = ItemClear.DOMAIN, name = ItemClear.NAME, version = ItemClear.VERSION, dependencies = ItemClear.DEPENDENCIES, acceptableRemoteVersions = "*")
 public class ItemClear extends AbstractMod
 {
 
