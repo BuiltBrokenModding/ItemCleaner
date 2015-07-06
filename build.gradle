@@ -16,7 +16,11 @@ buildscript {
     }
 }
 
-apply from: './BuiltBrokenScripts/index.gradle'
+plugins {
+  id 'com.matthewprenger.cursegradle' version '1.0.1'
+}
+
+apply from: 'https://raw.githubusercontent.com/BuiltBrokenModding/BuiltBrokenScripts/buildScripts/index.gradle'
 apply plugin: 'forge'
 
 
@@ -29,11 +33,11 @@ buildProps.withReader {
 }
 
 if (project.getProperty("bambooshortPlanName") == "BBM-Dev") {
-    group = "dev.builtbroken.mining101"
-    archivesBaseName = "Mining101"
+    group = "dev.builtbroken.itemcleaner"
+    archivesBaseName = "ItemCleaner"
 } else {
-    group = "com.builtbroken.,mining101"
-    archivesBaseName = "Mining101"
+    group = "com.builtbroken.itemcleaner"
+    archivesBaseName = "ItemCleaner"
 }
 
 version = "${project.minecraft.version}-${config.version.mod.major}.${config.version.mod.minor}.${config.version.mod.revis}b"
@@ -51,7 +55,7 @@ def currentJvm = org.gradle.internal.jvm.Jvm.current()
 println "Current Java version = " + currentJvm
 
 
-archivesBaseName = "Mining101"
+archivesBaseName = "ItemCleaner"
 
 minecraft {
 	replace "@MAJOR@", config.version.mod.major
@@ -71,34 +75,16 @@ processResources {
 	from 'build.properties'
 }
 
-task copyBuildXml(type: Copy) {
-    from 'build.properties'
-    into 'output'
-}
-
 repositories {
     maven {
         name "BuiltBroken"
         url "http://ci.builtbroken.com/maven/"
     }
-    maven {
-        name "Mobius Repo"
-        url "http://mobiusstrip.eu/maven"
-    }
-    maven {
-        name 'CB Repo'
-        url "http://chickenbones.net/maven/"
-    }
-    maven { 
-        name 'OC Maven'
-        url = "http://maven.cil.li/" }
 }
 
 dependencies 
 {
     testCompile 'junit:junit:4.11'
-    compile "mcp.mobius.waila:Waila:1.5.8a_1.7.10"
-    compile "li.cil.oc:OpenComputers:MC1.7.10-1.4.0.+:dev"
     compile "dev.builtbroken.voltzengine:VoltzEngine:1.7.10-0.+:deobf-dev"
 }
 

@@ -1,5 +1,7 @@
 .gradle
 build/
+CompiledWith.txt
+output/
 
 # Ignore Gradle GUI config
 gradle-app.setting
