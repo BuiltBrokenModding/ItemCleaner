@@ -1,7 +1,6 @@
 package com.builtbroken.itemclear;
 
 import com.builtbroken.itemclear.server.CommandItemClear;
-import com.builtbroken.itemclear.server.TickHandler;
 import com.builtbroken.mc.lib.mod.AbstractMod;
 import com.builtbroken.mc.lib.mod.AbstractProxy;
 import cpw.mods.fml.common.FMLCommonHandler;
@@ -48,9 +47,6 @@ public class ItemClear extends AbstractMod
     public void preInit(FMLPreInitializationEvent event)
     {
         super.preInit(event);
-        TickHandler.WORLD_CHECK_MIN = getConfig().getInt("World_Check_Min", "TickHandler", TickHandler.WORLD_CHECK_MIN, 10, 10000, "Controls when the tick handler scans the world. Value is number of entities in each world");
-        TickHandler.CHUNK_CHECK_MIN = getConfig().getInt("Chunk_Check_Min", "TickHandler", TickHandler.WORLD_CHECK_MIN, 10, 10000, "Controls when the tick handler scans a chunk. Value is number of entities in each chunk");
-        TickHandler.ITEM_KILL_COUNT = getConfig().getInt("Item_Kill_Trigger", "TickHandler", TickHandler.WORLD_CHECK_MIN, 10, 10000, "Controls when the tick handler removes items. Value is number of entities not items in a stack");
     }
 
     @Mod.EventHandler
