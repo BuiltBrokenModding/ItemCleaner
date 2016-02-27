@@ -6,3 +6,4 @@ output/
 # Ignore Gradle GUI config
 gradle-app.setting
 *.iml
+ItemCleaner.txt
