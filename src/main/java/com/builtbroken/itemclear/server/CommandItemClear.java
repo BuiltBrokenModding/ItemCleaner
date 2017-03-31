@@ -1,6 +1,6 @@
 package com.builtbroken.itemclear.server;
 
-import com.builtbroken.mc.prefab.commands.AbstractCommand;
+import com.builtbroken.mc.core.commands.prefab.AbstractCommand;
 import cpw.mods.fml.common.FMLCommonHandler;
 import net.minecraft.block.Block;
 import net.minecraft.command.ICommandSender;
